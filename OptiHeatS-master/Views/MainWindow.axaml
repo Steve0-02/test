@@ -1,0 +1,49 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:OptiHeatPro.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:a="clr-namespace:Avalonia.Controls.Templates;assembly=Avalonia.Controls"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight=""
+        x:Class="OptiHeatPro.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        xmlns:local="clr-namespace:OptiHeatPro.Views"
+        Icon="..\Assets\icon.ico"
+        Title="OptiHeatS - Heating optimization software"
+        Width="1260" Height="660">
+    <DockPanel LastChildFill="True">
+        <Border CornerRadius="0" Background="#e2000f" DockPanel.Dock="Top" HorizontalAlignment="Stretch" PointerPressed="TitleBar_OnPointerPressed">
+            <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image Source="..\Assets\danfoss.png" Width="100" Height="50"/>
+                <TextBlock Margin="5" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Text="OptiHeatS" Foreground="White"/>
+            </StackPanel>
+            </Grid>       
+        </Border>
+        <TabControl TabStripPlacement="Top">
+            <TabItem Header="Assets" FontSize="20">
+                <local:BoilersView DataContext="{Binding BoilersViewModel}" />
+            </TabItem>
+            <TabItem Header="Heating" FontSize="20">
+                <local:HeatingView DataContext="{Binding HeatingViewModel}" />
+            </TabItem>
+            <TabItem Header="Optimization" FontSize="20">
+                <local:OptimizerView DataContext="{Binding OptimizerViewModel}" />
+            </TabItem>
+            <TabItem Header="Summer Graphs" FontSize="20">
+                <local:SummerGraphView DataContext="{Binding GraphViewModel}" />
+            </TabItem>
+            <TabItem Header="Winter Graphs" FontSize="20">
+                <local:WinterGraphView DataContext="{Binding GraphViewModel}" />
+            </TabItem>
+            <TabItem Header="About" FontSize="20">
+                <local:AboutView DataContext="{Binding AboutViewModel}" />
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>

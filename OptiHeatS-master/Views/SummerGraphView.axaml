@@ -1,0 +1,52 @@
+<UserControl x:Class="OptiHeatPro.Views.SummerGraphView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
+             xmlns:vm="using:OptiHeatPro.ViewModels"
+             x:DataType="vm:GraphViewModel">
+    <Grid RowDefinitions="*,40">
+        <TabControl Grid.Row="0" TabStripPlacement="Left">
+            <TabItem Header="Heat Production" FontSize="20">
+                <lvc:CartesianChart Series="{Binding Summer}" Title="{Binding HPTitle}" LegendPosition="Bottom" ZoomMode="X" DrawMarginFrame="{Binding DrawMarginFrame}"  XAxes="{Binding SXAxes}" YAxes="{Binding HEYAxes}"></lvc:CartesianChart>
+            </TabItem>
+
+            <TabItem Header="Heat Demand" FontSize="20">
+                <lvc:CartesianChart Series="{Binding SummerHeatDemand}" Title="{Binding HDTitle}" LegendPosition="Bottom" ZoomMode="X" DrawMarginFrame="{Binding DrawMarginFrame}" XAxes="{Binding SXAxes}" YAxes="{Binding HYAxes}"></lvc:CartesianChart>
+            </TabItem>
+
+            <TabItem Header="Production Costs" FontSize="20">
+                <lvc:CartesianChart Series="{Binding SummerProductionCosts}" Title="{Binding PCTitle}" LegendPosition="Bottom" ZoomMode="X" DrawMarginFrame="{Binding DrawMarginFrame}" XAxes="{Binding SXAxes}" YAxes="{Binding CYAxes}"></lvc:CartesianChart>
+            </TabItem>
+
+            <TabItem Header="Electricity Prices" FontSize="20">
+                <lvc:CartesianChart Series="{Binding SummerElectricityPrices}" Title="{Binding EPTitle}" LegendPosition="Bottom" ZoomMode="X" DrawMarginFrame="{Binding DrawMarginFrame}" XAxes="{Binding SXAxes}" YAxes="{Binding ElYAxes}"></lvc:CartesianChart>
+            </TabItem>
+
+            <TabItem Header="Electricity Production" FontSize="20">
+                <lvc:CartesianChart Series="{Binding SummerElectricityProduction}" Title="{Binding EPDTitle}" LegendPosition="Bottom" ZoomMode="X" DrawMarginFrame="{Binding DrawMarginFrame}" XAxes="{Binding SXAxes}" YAxes="{Binding HEYAxes}"></lvc:CartesianChart>
+            </TabItem>
+
+            <TabItem Header="Electricity Consumption" FontSize="20">
+                <lvc:CartesianChart Series="{Binding SummerElectricityConsumption}" Title="{Binding ECTitle}" LegendPosition="Bottom" ZoomMode="X" DrawMarginFrame="{Binding DrawMarginFrame}" XAxes="{Binding SXAxes}" YAxes="{Binding HEYAxes}"></lvc:CartesianChart>
+            </TabItem>
+
+            <TabItem Header="Fuel Consumption" FontSize="20">
+                <lvc:CartesianChart Series="{Binding SummerConsumption}" Title="{Binding FCTitle}" LegendPosition="Bottom" ZoomMode="X" DrawMarginFrame="{Binding DrawMarginFrame}" XAxes="{Binding SXAxes}" YAxes="{Binding HYAxes}"></lvc:CartesianChart>
+            </TabItem>
+
+            <TabItem Header="CO2 Emissions" FontSize="20">
+                <lvc:CartesianChart Series="{Binding SummerEmissions}" Title="{Binding ETitle}" LegendPosition="Bottom" ZoomMode="X" DrawMarginFrame="{Binding DrawMarginFrame}" XAxes="{Binding SXAxes}" YAxes="{Binding EmYAxes}"></lvc:CartesianChart>
+            </TabItem>
+        </TabControl>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,120,280,400,120,*">
+            <TextBlock Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18">
+                <Run Text="Reduce CO2 emissions by:"/>
+                <Run Text="{Binding co2ReductionPercentage}" FontWeight="Bold"/>
+                <Run Text="%" FontWeight="Bold"/> 
+            </TextBlock>
+            <Slider Grid.Column="3" Maximum="100" Value="{Binding co2ReductionPercentage}"/>
+        </Grid>
+
+    </Grid>
+</UserControl>
